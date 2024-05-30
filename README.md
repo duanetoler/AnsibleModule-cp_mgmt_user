@@ -33,12 +33,15 @@ Delete a user:
 
 cp_mgmt_user parameters:
 ```
+- name
 - color
 - comments
 - tags
 - groups
 - authentication_method
 - password
+- email
+- details_level
 - ignore_errors
 - ignore_warnings
 ```
