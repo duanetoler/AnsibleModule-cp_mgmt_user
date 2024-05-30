@@ -6,18 +6,18 @@ Copy these modules to your Ansible collection: ~/.ansible/collections/ansible_co
 
 Get all locally defined users:
 ```
-* cp_mgmt_user_facts:
+- cp_mgmt_user_facts:
 ```
 
 Get a single user:
 ```
-* cp_mgmt_user_facts:
+- cp_mgmt_user_facts:
     name: user1
 ```
 
 Add a user:
 ```
-* cp_mgmt_user:
+- cp_mgmt_user:
     name: new_user
     authentication_method: check point password
     password: NewPasswordString
@@ -26,7 +26,7 @@ Add a user:
 
 Delete a user:
 ```
-* cp_mgmt_user:
+- cp_mgmt_user:
     name: a_user
     state: absent
 ```
