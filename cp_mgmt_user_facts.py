@@ -27,15 +27,15 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
 
 DOCUMENTATION = """
 ---
-module: cp_mgmt_user_group_facts
-short_description: Get user-group objects facts on Checkpoint over Web Services API
+module: cp_mgmt_user_facts
+short_description: Get user objects facts on Checkpoint over Web Services API
 description:
-  - Get user-group objects facts on Checkpoint devices.
+  - Get user objects facts on Checkpoint devices.
   - All operations are performed over Web Services API.
   - This module handles both operations, get a specific object and get several objects,
     For getting a specific object use the parameter 'name'.
 version_added: "5.0.0"
-author: "Eden Brillant (@chkp-edenbr)"
+author: "Duane Toler (@duanetoler)"
 options:
   name:
     description:
@@ -99,12 +99,12 @@ extends_documentation_fragment: check_point.mgmt.checkpoint_facts
 """
 
 EXAMPLES = """
-- name: show-user-group
-  cp_mgmt_user_group_facts:
-    name: myusergroup
+- name: show-user
+  cp_mgmt_user_facts:
+    name: myuser
 
-- name: show-user-groups
-  cp_mgmt_user_group_facts:
+- name: show-users
+  cp_mgmt_user_facts:
     details_level: full
 """
 

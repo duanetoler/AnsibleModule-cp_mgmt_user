@@ -27,28 +27,32 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
 
 DOCUMENTATION = """
 ---
-module: cp_mgmt_user_group
-short_description: Manages user-group objects on Checkpoint over Web Services API
+module: cp_mgmt_user
+short_description: Manages user objects on Checkpoint over Web Services API
 description:
-  - Manages user-group objects on Checkpoint devices including creating, updating and removing objects.
+  - Manages user objects on Checkpoint devices including creating, updating and removing objects.
   - All operations are performed over Web Services API.
 version_added: "5.0.0"
-author: "Eden Brillant (@chkp-edenbr)"
+author: "Duane Toler (@duanetoler)"
 options:
   name:
     description:
       - Object name.
     type: str
     required: True
+  authentication_method:
+    description:
+      - Type of authentication for the user.  Required if password is used.
+    choice: ['check point password', 'undefined', 'os password', 'securid', 'radius', 'tacacs']
+    type: str
+  password:
+    description:
+      - Password for the user.  Required if authentication_method is 'check point password'.
+    type: str
   email:
     description:
       - Email Address.
     type: str
-  members:
-    description:
-      - Collection of User Group objects identified by the name or UID.
-    type: list
-    elements: str
   tags:
     description:
       - Collection of tag identifiers.
@@ -88,28 +92,28 @@ extends_documentation_fragment: check_point.mgmt.checkpoint_objects
 """
 
 EXAMPLES = """
-- name: add-user-group
-  cp_mgmt_user_group:
-    email: myusergroup@email.com
-    members:
-    - myuser
-    name: myusergroup
+- name: add-user
+  cp_mgmt_user:
+    email: myuser@email.com
+    name: myuser
+    authentication_method: check point password
+    password: NewPassword
     state: present
 
-- name: set-user-group
-  cp_mgmt_user_group:
-    email: myusergroup123@email.com
-    name: myusergroup
+- name: set-user
+  cp_mgmt_user:
+    comments: My User
+    name: myuser
     state: present
 
-- name: delete-user-group
-  cp_mgmt_user_group:
-    name: myusergroup
+- name: delete-user
+  cp_mgmt_user:
+    name: myuser
     state: absent
 """
 
 RETURN = """
-cp_mgmt_user_group:
+cp_mgmt_user:
   description: The checkpoint object created or updated.
   returned: always, except when deleting the object.
   type: dict
